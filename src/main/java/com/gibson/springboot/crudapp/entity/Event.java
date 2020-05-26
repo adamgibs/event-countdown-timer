@@ -9,10 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Entity
-@Table(name="employee")
+@Table(name="event")
 public class Event {
 
 	@Id
@@ -23,18 +27,34 @@ public class Event {
 	@Column(name="event_name")
 	private String eventName;
 	
+	@Column(name="event_date_time")
 	private LocalDateTime eventDateTime;
 	
+	@ManyToOne
+	@JoinColumn(name="user_id", nullable=false)
+	private User user;
 	
-
+	
 	public Event() {
 		
 	}
 	
-	public Event(String eventName) {
+	@Autowired
+	public Event(String eventName, User user) {
 		this.eventName = eventName;
+		this.user = user;
 	
 	}
+	
+
+	public LocalDateTime getEventDateTime() {
+		return eventDateTime;
+	}
+
+	public void setEventDateTime(LocalDateTime eventDateTime) {
+		this.eventDateTime = eventDateTime;
+	}
+
 	
 	
 

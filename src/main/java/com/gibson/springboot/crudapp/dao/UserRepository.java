@@ -5,8 +5,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 import com.gibson.springboot.crudapp.entity.Event;
+import com.gibson.springboot.crudapp.entity.User;
 
 @Repository
-public interface ThingRepository extends JpaRepository<Event, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 }
