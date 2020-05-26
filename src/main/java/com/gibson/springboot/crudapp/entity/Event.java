@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="event")
@@ -30,8 +34,8 @@ public class Event {
 	@Column(name="event_date_time")
 	private LocalDateTime eventDateTime;
 	
-	@ManyToOne
-	@JoinColumn(name="user_id", nullable=false)
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	
@@ -40,8 +44,9 @@ public class Event {
 	}
 	
 	@Autowired
-	public Event(String eventName, User user) {
+	public Event(String eventName, LocalDateTime eventDateTime, User user) {
 		this.eventName = eventName;
+		this.eventDateTime = eventDateTime;
 		this.user = user;
 	
 	}
