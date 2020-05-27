@@ -8,6 +8,4 @@ import com.gibson.springboot.crudapp.entity.Event;
 import com.gibson.springboot.crudapp.entity.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
-
-}
+public interface UserRepository extends JpaRepository<User, Integer> {}
